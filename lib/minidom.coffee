@@ -7,6 +7,10 @@ class Node
     "<#{@name}>#{childrenStr}</#{@name}>"
 
 
+class TextNode
+  constructor: (@text) ->
+  toString: -> @text
+
 
 @Minidom =
 
@@ -36,9 +40,12 @@ class Node
     
     for token in tokens
       if /^[a-zA-Z\s]+$/.test token
-        node = new Node token
-        stack[0].children.push node
-        stack.unshift node
+        if lastOperator == ":"
+          stack[0].children.push new TextNode token
+        else
+          node = new Node token
+          stack[0].children.push node
+          stack.unshift node
 
       else
         lastOperator = token
