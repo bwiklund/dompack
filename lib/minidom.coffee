@@ -18,21 +18,25 @@ class Node
     # work fine for the mvp
     tokens = str.split /\b/
 
-    lastOperator = "{" # '{' so that first node is root's child
+
+    # lastOperator = "{" # '{' so that first node is root's child
 
     for token in tokens
       if /^[a-zA-Z\s]+$/.test token
         node = new Node token
-        if lastOperator == "{"
-          stack[0].children.push node
-          stack.unshift node
-        else if lastOperator == "|"
-          stack.shift()
-          stack[0].children.push node
-          stack.unshift node
-          
+        stack[0].children.push node
+        stack.unshift node
+
       else
-        lastOperator = token
+        if token == "{"
+          null
+        else if token == "|"
+          stack.shift()
+        else if token == "}"
+          stack.shift()
+          stack.shift()
+        # else
+        #   throw new Error("invalid operator: #{token} (i think)")
 
     # console.log JSON.stringify root, null, 2
 

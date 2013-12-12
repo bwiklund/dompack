@@ -30,3 +30,11 @@ describe "minidom", ->
     ).toBe(
       "<html><head><title></title><meta></meta><script></script></head></html>"
     )
+
+
+  it "can inflate am even less easy string", ->
+    expect(
+      Minidom.inflate "html{head{title}body{p"
+    ).toBe(
+      "<html><head><title></title></head><body><p></p></body></html>"
+    )
