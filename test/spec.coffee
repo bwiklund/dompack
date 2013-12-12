@@ -24,7 +24,7 @@ describe "minidom", ->
     )
 
 
-  it "can inflate a nested string with siblings", ->
+  it "can inflate a string with siblings", ->
     expect(
       Minidom.inflate "html{head{title|meta|script"
     ).toBe(
@@ -32,7 +32,7 @@ describe "minidom", ->
     )
 
 
-  it "can inflate a nested string with close tags", ->
+  it "can inflate a string with close tags", ->
     expect(
       Minidom.inflate "html{head{title}body{p"
     ).toBe(
