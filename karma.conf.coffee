@@ -6,12 +6,12 @@ module.exports = (config) ->
     frameworks: ["jasmine"]
 
     preprocessors:
-      "*.coffee": ["coverage"]
-      "test.coffee": ["coffee"]
+      "lib/*.coffee": ["coverage"]
+      "test/*.coffee": ["coffee"]
 
     files: [
-      "minidom.coffee"
-      "spec.coffee"
+      "lib/minidom.coffee"
+      "test/spec.coffee"
     ]
     
     exclude: []
