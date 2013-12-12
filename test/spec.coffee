@@ -1,4 +1,4 @@
-compressedDOM = "html{head{title|This works}}body{p|I think"
+compressedDOM = "html{head{title:This works}}body{p:I think"
 expectedHTML = "<html><head><title>This works</title></head><body><p>I think</p></body></html>"
 
 describe "minidom", ->
@@ -16,8 +16,17 @@ describe "minidom", ->
   #   expect( true ).toBe( false )
 
 
-  it "can inflate an easy string", ->
+  it "can inflate a really easy string", ->
+    expect(
+      Minidom.inflate "html{head{title"
+    ).toBe(
+      "<html><head><title></title></head></html>"
+    )
 
-    expanded = Minidom.inflate "html{head{title"
 
-    expect( expanded ).toBe "<html><head><title></title></head></html>"
+  it "can inflate a less easy string", ->
+    expect(
+      Minidom.inflate "html{head{title|meta|script"
+    ).toBe(
+      "<html><head><title></title><meta></meta><script></script></head></html>"
+    )
