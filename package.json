@@ -1,12 +1,12 @@
 {
-  "name": "minidom",
-  "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "dompack",
+  "version": "0.0.1",
+  "description": "compressed html",
+  "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/karma start --single-run -browsers PhantomJS"
   },
-  "author": "",
+  "author": "Ben Wiklund",
   "license": "BSD-2-Clause",
   "dependencies": {
     "karma-script-launcher": "~0.1.0",
