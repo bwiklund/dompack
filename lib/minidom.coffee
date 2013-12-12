@@ -16,11 +16,24 @@ class Node
 
     # this is not going to be the long term solution, but should
     # work fine for the mvp
-    tokens = str.split /\b/
+    _tokens = str.split /\b/#/((?<=[\{\}\|\:])|(?=[\{\}\|\:]))/
+
+    # connect on spaces
+    tokens = []
+    accum = []
+    for token in _tokens
+      if /[a-zA-Z\s]/.test token
+        accum.push token
+      else
+        tokens.push accum.join ''
+        accum.length = 0
+        tokens.push token
+    tokens.push accum
 
 
     # lastOperator = "{" # '{' so that first node is root's child
-
+    lastOperator = "{"
+    
     for token in tokens
       if /^[a-zA-Z\s]+$/.test token
         node = new Node token
@@ -28,6 +41,8 @@ class Node
         stack.unshift node
 
       else
+        lastOperator = token
+
         if token == "{"
           null
         else if token == "|"

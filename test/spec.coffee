@@ -38,3 +38,11 @@ describe "minidom", ->
     ).toBe(
       "<html><head><title></title></head><body><p></p></body></html>"
     )
+
+
+  it "can inflate a string with text nodes", ->
+    expect(
+      Minidom.inflate "div{p:This is a string"
+    ).toBe(
+      "<div><p>This is a string</p></div>"
+    )
